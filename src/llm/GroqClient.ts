@@ -4,7 +4,7 @@ import { env } from "../config/env";
 import { LlmClient, LlmResponse, ToolDefinition } from "./LlmClient";
 import { LlmTimeoutError, LlmInvalidOutputError } from "../shared/errors";
 
-const MODEL = "llama-3.3-70b-versatile"; // revisá el modelo vigente en console.groq.com
+const MODEL = "llama-3.3-70b-versatile"; // check the currently supported model at console.groq.com
 const TIMEOUT_MS = 15_000;
 
 export class GroqClient implements LlmClient {
@@ -40,7 +40,7 @@ export class GroqClient implements LlmClient {
 
       const message = response.choices[0]?.message;
       if (!message) {
-        throw new LlmInvalidOutputError("Respuesta sin choices", response);
+        throw new LlmInvalidOutputError("Response without choices", response);
       }
 
       return {
@@ -53,7 +53,7 @@ export class GroqClient implements LlmClient {
             };
           } catch {
             throw new LlmInvalidOutputError(
-              `El LLM devolvió argumentos inválidos para la tool ${tc.function.name}`,
+              `The LLM returned invalid arguments for the tool ${tc.function.name}`,
               tc.function.arguments
             );
           }

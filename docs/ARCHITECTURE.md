@@ -51,7 +51,7 @@ ai-lead-qualifier/
 │   │   ├── GroqClient.ts             # real implementation
 │   │   ├── FakeLlmClient.ts          # fake implementation for tests
 │   │   └── tools/
-│   │       └── buscarEmpresa.ts      # tool definition + execution
+│   │       └── searchCompany.ts      # tool definition + execution
 │   │
 │   ├── workers/                      # (empty for now, session 4: BullMQ)
 │   ├── eval/                         # (empty for now, session 7: eval dataset)
@@ -120,7 +120,7 @@ BullMQ comes in session 4 without touching `services/`.
 |---|---|---|
 | LLM as a primitive | `llm/GroqClient.ts` | ✅ |
 | Prompt & context engineering | `services/leadService.ts` (builds the messages) | ✅ basic |
-| Tool calling / agents | `llm/tools/buscarEmpresa.ts` + loop in `leadService.ts` | ✅ basic |
+| Tool calling / agents | `llm/tools/searchCompany.ts` + loop in `leadService.ts` | ✅ basic |
 | Retrieval (RAG) | — | ⏳ session 5 |
 | Relational + vector DBs | `repositories/leadRepository.ts` (`embedding` column already in the migration) | ⏳ partial |
 | Non-deterministic failure handling | `shared/errors.ts` | ✅ types defined, not yet used in a worker |
