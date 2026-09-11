@@ -7,30 +7,29 @@ import {
   NotFoundError,
 } from "./errors.js";
 
-// Sanity check para tener al menos un test corriendo en CI.
-// Los tests reales de servicios (con FakeLlmClient) van en cada
-// PR que toque esa lógica.
+// Sanity check to have at least one test running in CI.
+// Real service tests (with FakeLlmClient) go in whatever PR touches that logic.
 
-test("LlmInvalidOutputError guarda el raw output y el name correcto", () => {
-  const err = new LlmInvalidOutputError("json invalido", { foo: "bar" });
+test("LlmInvalidOutputError stores the raw output and the correct name", () => {
+  const err = new LlmInvalidOutputError("invalid json", { foo: "bar" });
   assert.equal(err.name, "LlmInvalidOutputError");
   assert.deepEqual(err.raw, { foo: "bar" });
 });
 
-test("LlmTimeoutError tiene mensaje por defecto", () => {
+test("LlmTimeoutError has a default message", () => {
   const err = new LlmTimeoutError();
   assert.equal(err.name, "LlmTimeoutError");
-  assert.match(err.message, /tardó demasiado/);
+  assert.match(err.message, /took too long/);
 });
 
-test("LlmToolCallError guarda el nombre de la tool", () => {
-  const err = new LlmToolCallError("fallo la tool", "buscar_empresa");
+test("LlmToolCallError stores the tool name", () => {
+  const err = new LlmToolCallError("tool call failed", "search_company");
   assert.equal(err.name, "LlmToolCallError");
-  assert.equal(err.toolName, "buscar_empresa");
+  assert.equal(err.toolName, "search_company");
 });
 
-test("NotFoundError arma el mensaje con entidad e id", () => {
+test("NotFoundError builds the message with entity and id", () => {
   const err = new NotFoundError("Lead", "123");
   assert.equal(err.name, "NotFoundError");
-  assert.equal(err.message, "Lead con id 123 no encontrado");
+  assert.equal(err.message, "Lead with id 123 not found");
 });

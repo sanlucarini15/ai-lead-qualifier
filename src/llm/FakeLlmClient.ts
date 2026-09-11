@@ -1,7 +1,7 @@
 import { LlmClient, LlmResponse } from "./LlmClient";
 
-// Implementación fake del mismo contrato. Sirve para testear los services
-// sin llamar a Groq de verdad — ni gastar cuota, ni depender de la red.
+// Fake implementation of the same contract. Used to test services without
+// calling Groq for real — no burning quota, no network dependency.
 export class FakeLlmClient implements LlmClient {
   constructor(private fixedResponse: LlmResponse) {}
 

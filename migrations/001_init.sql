@@ -2,14 +2,14 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
 CREATE TABLE IF NOT EXISTS leads (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  nombre TEXT NOT NULL,
+  name TEXT NOT NULL,
   email TEXT NOT NULL UNIQUE,
-  empresa TEXT NOT NULL,
-  notas TEXT,
+  company TEXT NOT NULL,
+  notes TEXT,
   score NUMERIC,
-  score_razon TEXT,
-  embedding VECTOR(1536), -- se completa en la sesión de RAG
+  score_reason TEXT,
+  embedding VECTOR(1536), -- filled in during the RAG session
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
-CREATE INDEX IF NOT EXISTS idx_leads_empresa ON leads (empresa);
+CREATE INDEX IF NOT EXISTS idx_leads_company ON leads (company);

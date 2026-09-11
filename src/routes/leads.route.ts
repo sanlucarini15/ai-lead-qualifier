@@ -7,16 +7,16 @@ import { NotFoundError } from "../shared/errors";
 
 export const leadsRouter = Router();
 
-// TODO(sesión 4): esto va a pasar a encolarse con BullMQ en vez de
-// procesarse sincrónicamente acá. Por ahora, síncrono para poder ver
-// el flujo completo funcionando de punta a punta.
+// TODO(session 4): this is going to move to being queued with BullMQ
+// instead of processed synchronously here. For now, synchronous so we
+// can see the full flow working end to end.
 const llm = new GroqClient();
 
 const createLeadSchema = z.object({
-  nombre: z.string().min(1),
+  name: z.string().min(1),
   email: z.string().email(),
-  empresa: z.string().min(1),
-  notas: z.string().optional(),
+  company: z.string().min(1),
+  notes: z.string().optional(),
 });
 
 leadsRouter.post("/leads", async (req, res, next) => {

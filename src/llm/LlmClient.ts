@@ -1,11 +1,11 @@
-// Única interfaz explícita del proyecto. La justificación: vamos a tener
-// más de una implementación real (Groq ahora, capaz Gemini después) y
-// queremos que el compilador nos obligue a mantenerlas alineadas.
+// The only explicit interface in the project. The reasoning: we'll have
+// more than one real implementation (Groq now, maybe Gemini later) and
+// want the compiler to force us to keep them aligned.
 
 export interface ToolDefinition {
   name: string;
   description: string;
-  parameters: Record<string, unknown>; // JSON schema de los parámetros
+  parameters: Record<string, unknown>; // JSON schema for the parameters
 }
 
 export interface ToolCall {

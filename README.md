@@ -51,13 +51,13 @@ curl http://localhost:3000/health
 # create a lead
 curl -X POST http://localhost:3000/leads \
   -H "Content-Type: application/json" \
-  -d '{"nombre":"Juan Perez","email":"juan@acme.com","empresa":"Acme Corp","notas":"Pidió demo por LinkedIn"}'
+  -d '{"name":"Juan Perez","email":"juan@acme.com","company":"Acme Corp","notes":"Requested a demo via LinkedIn"}'
 
 # score the lead (use the id returned by the previous POST)
 curl -X POST http://localhost:3000/leads/<ID>/score
 ```
 
-If the second curl returns JSON with `score` and `razon`, tool calling +
+If the second curl returns JSON with `score` and `reason`, tool calling +
 structured output are working end to end. 🎉
 
 ## Project status (session roadmap)

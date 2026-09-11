@@ -8,14 +8,14 @@ app.use(express.json());
 app.get("/health", (_req, res) => res.json({ status: "ok" }));
 app.use(leadsRouter);
 
-// Manejador de errores centralizado — el equivalente a @ControllerAdvice.
-// TODO(sesión 6): mapear LlmTimeoutError, LlmInvalidOutputError, etc.
-// a respuestas HTTP específicas en vez de un 500 genérico.
+// Centralized error handler — the equivalent of @ControllerAdvice.
+// TODO(session 6): map LlmTimeoutError, LlmInvalidOutputError, etc.
+// to specific HTTP responses instead of a generic 500.
 app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error(err);
-  res.status(500).json({ error: err.message ?? "Error interno" });
+  res.status(500).json({ error: err.message ?? "Internal error" });
 });
 
 app.listen(env.PORT, () => {
-  console.log(`Server corriendo en http://localhost:${env.PORT}`);
+  console.log(`Server running at http://localhost:${env.PORT}`);
 });

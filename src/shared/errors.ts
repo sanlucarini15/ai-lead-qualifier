@@ -1,5 +1,5 @@
-// Errores explícitos en vez de "Error" genérico, para poder decidir
-// en el worker si algo se reintenta, se descarta, o se manda a dead-letter.
+// Explicit errors instead of a generic "Error", so the worker can decide
+// whether something gets retried, discarded, or sent to dead-letter.
 
 export class LlmInvalidOutputError extends Error {
   constructor(message: string, public raw: unknown) {
@@ -9,7 +9,7 @@ export class LlmInvalidOutputError extends Error {
 }
 
 export class LlmTimeoutError extends Error {
-  constructor(message = "El LLM tardó demasiado en responder") {
+  constructor(message = "The LLM took too long to respond") {
     super(message);
     this.name = "LlmTimeoutError";
   }
@@ -24,7 +24,7 @@ export class LlmToolCallError extends Error {
 
 export class NotFoundError extends Error {
   constructor(entity: string, id: string) {
-    super(`${entity} con id ${id} no encontrado`);
+    super(`${entity} with id ${id} not found`);
     this.name = "NotFoundError";
   }
 }
